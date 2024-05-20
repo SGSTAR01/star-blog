@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import userRouter from "./routes/user.js";
+import blogRouter from "./routes/blog.js";
 import connectDB from "./connection.js";
 import { checkAuthCookie } from "./middlewares/authentication.js";
 const app = express();
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
+app.use("/blog", blogRouter);
 
 // Start the server
 app.listen(port, () => {

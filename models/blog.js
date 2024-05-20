@@ -12,7 +12,7 @@ const blogSchema = new Schema(
     },
     coverImage: {
       type: String,
-      default: "/images/default_cover.png",
+      default: "/images/default-cover.jpg",
     },
     author: {
       type: Schema.Types.ObjectId,
