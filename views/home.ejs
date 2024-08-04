@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <%- include('./partials/head') %>
     <title>Home</title>
-</head>
-<body>
+  </head>
+
+  <body>
     <%- include('./partials/nav') %>
-    <%= JSON.stringify(user) %>
+
+    <div class="container mt-3" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+      <% blogs.forEach(blog=> { %>
+      <div class="col-md-6" style="width: 300px;">
+        <div class="card mb-3">
+          <img
+            src="<%= blog.coverImage %>"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <p class="card-text"><%= blog.content.substring(0, 100) %>...</p>
+            <a href="/blog/<%= blog._id %>" class="btn btn-primary"
+              >Read More</a
+            >
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
     <%- include('./partials/scripts') %>
-    
-</body>
+  </body>
 </html>

@@ -15,6 +15,10 @@ export function createToken(user) {
 }
 
 export function verifyToken(token) {
-  const payload = JWT.verify(token, secret);
-  return payload;
+  try {
+    const payload = JWT.verify(token, secret);
+    return payload;
+  } catch (error) {
+    return error;
+  }
 }
