@@ -6,6 +6,9 @@ import blogRouter from "./routes/blog.js";
 import connectDB from "./connection.js";
 import { checkAuthCookie } from "./middlewares/authentication.js";
 import Blog from "./models/blog.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 const app = express();
 const port = process.env.PORT;
@@ -19,9 +22,9 @@ const options = {
 connectDB(uri, options);
 
 // Set up the view engine
-app.set("views", __dirname + "/views");
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + "public"));
+app.use(express.static(path.join(__dirname ,'public')));
 
 // Set up the middlewares
 app.use(express.json());
