@@ -20,6 +20,7 @@ connectDB(uri, options);
 
 // Set up the view engine
 app.set("view engine", "ejs");
+app.set("views", "views");
 
 // Set up the middlewares
 app.use(express.json());
