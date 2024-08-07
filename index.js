@@ -6,9 +6,6 @@ import blogRouter from "./routes/blog.js";
 import connectDB from "./connection.js";
 import { checkAuthCookie } from "./middlewares/authentication.js";
 import Blog from "./models/blog.js";
-import path from 'path';
-import { fileURLToPath } from 'url';
-
 
 const app = express();
 const port = process.env.PORT;
@@ -22,15 +19,14 @@ const options = {
 connectDB(uri, options);
 
 // Set up the view engine
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname ,'public')));
 
 // Set up the middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(checkAuthCookie("token"));
+app.use(express.static("public"));
 
 // Set up the routes
 app.get("/", async(req, res) => {
