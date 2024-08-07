@@ -19,14 +19,15 @@ const options = {
 connectDB(uri, options);
 
 // Set up the view engine
+app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "public"));
 
 // Set up the middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(checkAuthCookie("token"));
-app.use(express.static("public"));
 
 // Set up the routes
 app.get("/", async(req, res) => {
